@@ -19,6 +19,7 @@ class CountryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+
 admin.site.register(Country, CountryAdmin)
 
 
@@ -29,3 +30,12 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Department, DepartmentAdmin)
+
+
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('name', 'department')
+    list_filter = ('department',)
+    search_fields = ('name',)
+
+
+admin.site.register(City, CityAdmin)
