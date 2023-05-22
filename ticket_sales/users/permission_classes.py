@@ -10,8 +10,8 @@ class BaseAuthPermApi(permissions.BasePermission):
 
 
 class IsAdmin(BaseAuthPermApi):
-    _PERMISSIONS = ['admin']
+    _PERMISSIONS = ['Administradores']
 
 
 class IsClient(BaseAuthPermApi):
-    _PERMISSIONS = ['client']
+    _PERMISSIONS = ['Clientes']
