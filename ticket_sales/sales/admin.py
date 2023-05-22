@@ -1,5 +1,5 @@
 from django.contrib import admin
-from sales.models import Event, Ticket, Sale, Type
+from sales.models import Event, Ticket, Type
 
 # Register your models here.
 
@@ -23,10 +23,3 @@ class TicketAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Ticket, TicketAdmin)
-
-
-class SaleAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Sale, SaleAdmin)
