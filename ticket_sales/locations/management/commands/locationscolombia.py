@@ -81,3 +81,5 @@ class Command(BaseCommand):
             City(id=34, name='Patía', department_id=10),
         ]
         City.objects.bulk_create(cities)
+
+        self.stdout.write(self.style.SUCCESS('Ciudades creadas exitosamente'))
