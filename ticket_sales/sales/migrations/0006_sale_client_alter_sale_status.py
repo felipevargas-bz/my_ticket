@@ -6,22 +6,25 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('sales', '0005_remove_sale_total_remove_type_tickets_available'),
+        ("sales", "0005_remove_sale_total_remove_type_tickets_available"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='sale',
-            name='client',
-            field=models.ForeignKey(default=2, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="sale",
+            name="client",
+            field=models.ForeignKey(
+                default=2,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='sale',
-            name='status',
+            model_name="sale",
+            name="status",
             field=models.IntegerField(default=1),
         ),
     ]

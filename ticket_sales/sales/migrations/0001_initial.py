@@ -5,49 +5,84 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('description', models.CharField(max_length=200)),
-                ('date', models.DateField()),
-                ('time', models.TimeField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("description", models.CharField(max_length=200)),
+                ("date", models.DateField()),
+                ("time", models.TimeField()),
             ],
         ),
         migrations.CreateModel(
-            name='Ticket',
+            name="Ticket",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('amount', models.IntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("amount", models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='TicketSale',
+            name="TicketSale",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('total', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('status', models.IntegerField()),
-                ('date', models.DateField()),
-                ('time', models.TimeField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("total", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("status", models.IntegerField()),
+                ("date", models.DateField()),
+                ("time", models.TimeField()),
             ],
         ),
         migrations.CreateModel(
-            name='Type',
+            name="Type",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('max_tickets', models.IntegerField()),
-                ('tickets_available', models.IntegerField()),
-                ('event', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sales.event')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("max_tickets", models.IntegerField()),
+                ("tickets_available", models.IntegerField()),
+                (
+                    "event",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="sales.event"
+                    ),
+                ),
             ],
         ),
     ]

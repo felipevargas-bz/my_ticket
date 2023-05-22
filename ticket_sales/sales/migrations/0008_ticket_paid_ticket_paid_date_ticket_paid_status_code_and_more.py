@@ -4,35 +4,34 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('sales', '0007_remove_ticket_sale_delete_sale'),
+        ("sales", "0007_remove_ticket_sale_delete_sale"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ticket',
-            name='paid',
+            model_name="ticket",
+            name="paid",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='paid_date',
+            model_name="ticket",
+            name="paid_date",
             field=models.DateField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='paid_status_code',
+            model_name="ticket",
+            name="paid_status_code",
             field=models.IntegerField(default=1),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='paid_status_message',
-            field=models.CharField(default='Pendiente', max_length=200),
+            model_name="ticket",
+            name="paid_status_message",
+            field=models.CharField(default="Pendiente", max_length=200),
         ),
         migrations.AddField(
-            model_name='ticket',
-            name='paid_time',
+            model_name="ticket",
+            name="paid_time",
             field=models.TimeField(blank=True, null=True),
         ),
     ]

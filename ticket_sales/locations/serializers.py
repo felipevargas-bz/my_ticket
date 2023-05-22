@@ -5,7 +5,7 @@ from locations.models import Location, City, Country, Department
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Country
-        fields = '__all__'
+        fields = "__all__"
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Department
-        fields = ('id', 'name', 'country')
+        fields = ("id", "name", "country")
 
 
 class CitySerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class CitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = City
-        fields = ('id', 'name', 'department')
+        fields = ("id", "name", "department")
 
 
 class LocationSerializer(serializers.ModelSerializer):
@@ -29,10 +29,10 @@ class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Location
-        fields = ('id', 'name', 'address', 'city')
+        fields = ("id", "name", "address", "city")
 
 
 class LocationSerializerCreate(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ('id', 'name', 'address', 'city', 'country', 'department')
+        fields = ("id", "name", "address", "city", "country", "department")

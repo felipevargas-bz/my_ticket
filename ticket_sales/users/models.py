@@ -1,15 +1,22 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 from django.db import models
 from django.contrib.auth.models import Group
 
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password, first_name, last_name):
-
         if not email:
-            raise ValueError('El email debe ser proporcionado.')
+            raise ValueError("El email debe ser proporcionado.")
 
-        user = self.model(email=self.normalize_email(email), first_name=first_name, last_name=last_name)
+        user = self.model(
+            email=self.normalize_email(email),
+            first_name=first_name,
+            last_name=last_name,
+        )
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -18,7 +25,7 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(email, password, first_name, last_name)
         user.is_staff = True
         user.is_superuser = True
-        user.groups.add(Group.objects.get(name='Administradores'))
+        user.groups.add(Group.objects.get(name="Administradores"))
         user.save(using=self._db)
         return user
 
@@ -32,16 +39,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
     def __str__(self):
-        return str(self.pk) + ' - ' + self.email
+        return str(self.pk) + " - " + self.email
 
     @property
     def is_client(self):
-        return self.groups.filter(name='Clientes').exists()
+        return self.groups.filter(name="Clientes").exists()
 
     @property
     def is_admin(self):
-        return self.groups.filter(name='Administradores').exists()
+        return self.groups.filter(name="Administradores").exists()

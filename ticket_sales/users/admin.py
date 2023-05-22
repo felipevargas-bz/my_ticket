@@ -7,7 +7,10 @@ User = get_user_model()
 
 
 class UserAdmin(admin.ModelAdmin):
-    filter_horizontal = ('groups', 'user_permissions',)
+    filter_horizontal = (
+        "groups",
+        "user_permissions",
+    )
 
 
 admin.site.register(User, UserAdmin)

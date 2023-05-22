@@ -2,8 +2,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from sales.models import Ticket, Event, Type
-from sales.serializers import (TicketSerializerCreate, EventSerializerCreate, TypeSerializerCreate,
-                               EventSerializer, TypeSerializer, TicketSerializer)
+from sales.serializers import (
+    TicketSerializerCreate,
+    EventSerializerCreate,
+    TypeSerializerCreate,
+    EventSerializer,
+    TypeSerializer,
+    TicketSerializer,
+)
 from utils.make_q import make_q_object
 from users.permission_classes import IsAdmin, IsClient
 
@@ -35,7 +41,7 @@ class EventView(APIView):
     def get(self, request):
         source_data = dict(request.GET)
 
-        if 'location' in source_data:
+        if "location" in source_data:
             q_object = make_q_object(source_data)
 
             if q_object:
@@ -45,7 +51,7 @@ class EventView(APIView):
             else:
                 rsp = Response(status=400)
         else:
-            rsp = Response(status=400, data={'error': 'location is required'})
+            rsp = Response(status=400, data={"error": "location is required"})
         return rsp
 
     def delete(self, request, pk):
@@ -79,7 +85,7 @@ class TypeView(APIView):
     def get(self, request):
         source_data = dict(request.GET)
 
-        if 'event' in source_data:
+        if "event" in source_data:
             q_object = make_q_object(source_data)
 
             if q_object:
@@ -91,7 +97,12 @@ class TypeView(APIView):
                 return rsp
 
         else:
-            rsp = Response(status=400, data={'error': 'event parameter is required exaple: ?event=1 (event id)'})
+            rsp = Response(
+                status=400,
+                data={
+                    "error": "event parameter is required exaple: ?event=1 (event id)"
+                },
+            )
 
         return rsp
 

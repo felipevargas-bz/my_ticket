@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('sales', '0003_rename_ticketsale_sale'),
+        ("sales", "0003_rename_ticketsale_sale"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='type',
-            name='currency',
-            field=models.CharField(default='COP', max_length=10),
+            model_name="type",
+            name="currency",
+            field=models.CharField(default="COP", max_length=10),
         ),
         migrations.AlterField(
-            model_name='type',
-            name='price',
+            model_name="type",
+            name="price",
             field=models.DecimalField(decimal_places=2, max_digits=30),
         ),
     ]

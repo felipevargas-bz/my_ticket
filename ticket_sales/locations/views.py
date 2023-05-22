@@ -2,8 +2,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from locations.models import Location, City, Country, Department
-from locations.serializers import (LocationSerializer, CitySerializer, CountrySerializer,
-                                   DepartmentSerializer, LocationSerializerCreate)
+from locations.serializers import (
+    LocationSerializer,
+    CitySerializer,
+    CountrySerializer,
+    DepartmentSerializer,
+    LocationSerializerCreate,
+)
 from utils.make_q import make_q_object
 from users.permission_classes import IsAdmin, IsClient
 
@@ -35,7 +40,11 @@ class LocationView(APIView):
     def get(self, request):
         source_data = dict(request.GET)
 
-        if 'country' in source_data and 'city' in source_data and 'department' in source_data:
+        if (
+            "country" in source_data
+            and "city" in source_data
+            and "department" in source_data
+        ):
             q_object = make_q_object(source_data)
             if q_object:
                 locations = Location.objects.filter(q_object)
@@ -44,7 +53,7 @@ class LocationView(APIView):
             else:
                 rsp = Response(status=400)
         else:
-            rsp = Response(status=400, data={'error': 'country and city are required'})
+            rsp = Response(status=400, data={"error": "country and city are required"})
         return rsp
 
     def delete(self, request, pk):
@@ -157,7 +166,7 @@ class DepartmentView(APIView):
         source_data = dict(request.GET)
         q_object = make_q_object(source_data)
 
-        if 'country' in source_data:
+        if "country" in source_data:
             if q_object:
                 departments = Department.objects.filter(q_object)
             else:

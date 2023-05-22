@@ -4,18 +4,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('sales', '0004_type_currency_alter_type_price'),
+        ("sales", "0004_type_currency_alter_type_price"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='sale',
-            name='total',
+            model_name="sale",
+            name="total",
         ),
         migrations.RemoveField(
-            model_name='type',
-            name='tickets_available',
+            model_name="type",
+            name="tickets_available",
         ),
     ]

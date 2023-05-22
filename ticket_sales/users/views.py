@@ -7,7 +7,6 @@ from users.serializers import UserSerializer, UserRegistrationSerializer
 
 
 class UserRegistration(APIView):
-
     def post(self, request):
         data = request.data
         serializer = UserRegistrationSerializer(data=data)
