@@ -5,12 +5,13 @@ from sales.models import Ticket, Event, Type
 from sales.serializers import (TicketSerializerCreate, EventSerializerCreate, TypeSerializerCreate,
                                EventSerializer, TypeSerializer, TicketSerializer)
 from utils.make_q import make_q_object
+from users.permission_classes import IsAdmin, IsClient
 
 # Create your views here.
 
 
 class EventView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, (IsAdmin | IsClient))
 
     def post(self, request):
         data = request.data
@@ -54,7 +55,7 @@ class EventView(APIView):
 
 
 class TypeView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, (IsAdmin | IsClient))
 
     def post(self, request):
         data = request.data
@@ -101,7 +102,7 @@ class TypeView(APIView):
 
 
 class TicketView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, (IsAdmin | IsClient))
 
     def post(self, request):
         data = request.data

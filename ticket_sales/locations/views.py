@@ -5,12 +5,13 @@ from locations.models import Location, City, Country, Department
 from locations.serializers import (LocationSerializer, CitySerializer, CountrySerializer,
                                    DepartmentSerializer, LocationSerializerCreate)
 from utils.make_q import make_q_object
+from users.permission_classes import IsAdmin, IsClient
 
 # Create your views here.
 
 
 class LocationView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, (IsAdmin | IsClient))
 
     def post(self, request):
         data = request.data
@@ -53,7 +54,7 @@ class LocationView(APIView):
 
 
 class CityView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, (IsAdmin | IsClient))
 
     def post(self, request):
         data = request.data
@@ -92,7 +93,7 @@ class CityView(APIView):
 
 
 class CountryView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, (IsAdmin | IsClient))
 
     def post(self, request):
         data = request.data
@@ -131,7 +132,7 @@ class CountryView(APIView):
 
 
 class DepartmentView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, (IsAdmin | IsClient))
 
     def post(self, request):
         data = request.data
