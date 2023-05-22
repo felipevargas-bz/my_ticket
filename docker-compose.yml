@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: pre_flight
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 6232
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_NAME: pre_flight
+      DB_USER: postgres
+      DB_PASSWORD: 6232
+      DB_HOST: db
+      DB_PORT: 5432
+      DEBUG: 'True'
+      ALLOWED_HOSTS: '[*,]'
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
