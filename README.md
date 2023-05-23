@@ -42,6 +42,17 @@ python manage.py creategroups
 ``
 python manage.py locationscolombia
 ``
+* Si vas a usar el proyecto sin Docker, debes crear un archivo .env con las siguientes variables de entorno:
+```
+DB_NAME="pre_flight"
+DB_USER="postgres"
+DB_PASSWORD="6232"
+DB_HOST="localhost"
+DB_PORT="5432"
+DEBUG="True"
+ALLOWED_HOSTS=[*,]
+```
+Es recomendable ponerlo al lado de el archivo settings.py
 
 ## Autor
 ### Felipe Vargas
