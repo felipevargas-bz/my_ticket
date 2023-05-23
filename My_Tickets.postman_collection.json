@@ -1,0 +1,548 @@
+{
+	"info": {
+		"_postman_id": "54f8a299-4162-430c-a48c-54fcc968c4a1",
+		"name": "My_Tickets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ClientRegister",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Felipe\",\r\n    \"last_name\": \"Vargas\",\r\n    \"email\": \"felipevargas.bz@gmail.com\",\r\n    \"password\": \"Fel1001*\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_host}}/users/api/register/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"users",
+						"api",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Obtener el valor de la propiedad \"token\" del cuerpo de la respuesta\r",
+							"var tokenValue = pm.response.json().access;\r",
+							"var refreshValue = pm.response.json().refresh;\r",
+							"\r",
+							"// Guardar el valor en una variable de entorno llamada \"TOKEN\"\r",
+							"pm.environment.set(\"TOKEN\", tokenValue);\r",
+							"pm.environment.set(\"REFRESH\", tokenValue);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"felipevargas.bz@gmail.com\",\r\n    \"password\": \"Fel1001*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_host}}/users/api/token/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"users",
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RefreshToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var tokenValue = pm.response.json().access;\r",
+							"\r",
+							"pm.environment.set(\"TOKEN\", tokenValue);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4NDg0NDkxNiwianRpIjoiNGExNTBhOGJhYzM3NDYxNGFkODkyYTYyOWYwNTI5N2YiLCJ1c2VyX2lkIjo3fQ.UrLVGRLLUOvWyfWcSFIOSl5KJO6_xzMh_QFDp4nPpnU\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_host}}/users/api/token/refresh/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"users",
+						"api",
+						"token",
+						"refresh",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Countries",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_host}}/locations/api/country/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"locations",
+						"api",
+						"country",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Departments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0NzU4NDQzLCJqdGkiOiI0OTEyZGIwNWJiNjg0MjJjYTYyODZlZDJjMDA1OTk0NyIsInVzZXJfaWQiOjd9.5WUyvDzAS3DxM1wrZYrMyMlHzzhpCnJ6RzH64vzkXMo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_host}}/locations/api/departament/?country=1",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"locations",
+						"api",
+						"departament",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Amazonas",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cities",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_host}}/locations/api/city/?department=2",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"locations",
+						"api",
+						"city",
+						""
+					],
+					"query": [
+						{
+							"key": "department",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "locations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_host}}/locations/api/location/?country=1&department=2&city=2",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"locations",
+						"api",
+						"location",
+						""
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "1"
+						},
+						{
+							"key": "department",
+							"value": "2"
+						},
+						{
+							"key": "city",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Events",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_host}}/sales/api/event/?location=1&date=2023-05-22",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"sales",
+						"api",
+						"event",
+						""
+					],
+					"query": [
+						{
+							"key": "location",
+							"value": "1"
+						},
+						{
+							"key": "date",
+							"value": "2023-05-22"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Types",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_host}}/sales/api/type/?event=1",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"sales",
+						"api",
+						"type",
+						""
+					],
+					"query": [
+						{
+							"key": "event",
+							"value": "1"
+						},
+						{
+							"key": "hola",
+							"value": "q",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tickets",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_host}}/sales/api/ticket/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"sales",
+						"api",
+						"ticket",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TicketsCreate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"client\": 7,\r\n    \"amount\": 1,\r\n    \"event\": 1,\r\n    \"type\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_host}}/sales/api/ticket/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"sales",
+						"api",
+						"ticket",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LocationCreate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Centro de Convenciones Plaza Mayor\",\r\n    \"address\": \"Cra. 57 # 41-81, La Candelaria, Medellín\",\r\n    \"city\": 2,\r\n    \"country\": 1,\r\n    \"department\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_host}}/locations/api/location/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"locations",
+						"api",
+						"location",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EventCreate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"SUPER CONCIERTO FERIA DE FLORES 2023\",\r\n    \"description\": \"GILBERTO SANTA ROSA, GRUPO FIRME Y SUS AMIGOS, RYAN CASTRO, PIPE BUENO, ELDER DAYAN\",\r\n    \"location\": 1,\r\n    \"date\": \"2023-05-22\",\r\n    \"time\": \"19:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_host}}/sales/api/event/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"sales",
+						"api",
+						"event",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TypeCreate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"PALCO ORO\",\r\n    \"price\": 10200000,\r\n    \"event\": 1,\r\n    \"max_tickets\": 12\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_host}}/sales/api/type/",
+					"host": [
+						"{{local_host}}"
+					],
+					"path": [
+						"sales",
+						"api",
+						"type",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
