@@ -1,43 +1,47 @@
 # My_Ticket
 
-Breve descripción del proyecto y su propósito.
+API para la venta de boletos de eventos. Los usuarios pueden crear una cuenta, consultar la disponibilidad de lugares en los eventos y realizar compras.
 
 ## Características
 
 - Venta de tickets en línea
 - Creación de eventos
 - Administración de usuarios y permisos
-- Pagos seguros
-- Generación de boletos electrónicos
+- Pagos seguros #TODO
+- Generación de boletos electrónicos #TODO
 
 ## Instalación
+Si tienes Docker instalado en tu máquina, puedes seguir estos pasos:
 
-Instrucciones claras y concisas sobre cómo instalar y configurar el proyecto en un entorno local. Incluye requisitos de sistema, dependencias y comandos necesarios para la instalación.
+1. Clonar el repositorio:
+``
+git clone https://github.com/felipevargas-bz/my_ticket
+``
+2. Ingresar al repositorio clonado:
+``
+cd my_ticket
+``
+3. Ejecutar el comando:
+``
+docker-compose up
+``
+4. Utiliza la colección de Postman para realizar las consultas.
 
-## Uso
-
-Explica cómo utilizar el proyecto de manera efectiva. Proporciona ejemplos de código o comandos que ilustren su funcionalidad principal. Si hay una interfaz de usuario, también puedes incluir capturas de pantalla o gifs animados.
+Asegúrate de tener la colección de Postman disponible para utilizarla en este proyecto.
 
 ## Configuración
 
-Si hay alguna configuración necesaria, como credenciales de API, tokens de acceso o ajustes de base de datos, asegúrate de mencionarlos aquí. Proporciona instrucciones claras sobre cómo configurar adecuadamente el proyecto.
-
-## Contribución
-
-Si deseas que otros colaboren en tu proyecto, proporciona pautas claras sobre cómo pueden hacerlo. Indica si aceptas solicitudes de extracción y cómo los contribuyentes deben estructurar su código.
-
-## Licencia
-
-Menciona la licencia bajo la cual se distribuye tu proyecto. Si aún no has decidido una licencia, puedes investigar diferentes opciones y elegir la que mejor se adapte a tus necesidades.
+* Debes ejecutar las migraciones
+``
+python manage.py migrate
+``
+* Luego ejecutar los comandos de configuración
+``
+python manage.py creategroups
+``
+``
+python manage.py locationscolombia
+``
 
 ## Autor
-
-Indica quién es el autor o los autores del proyecto, y proporciona un enlace a su perfil o página web (si corresponde). También puedes incluir una breve descripción sobre ellos.
-
-## Agradecimientos
-
-Agradece a las personas o proyectos que te hayan apoyado en el desarrollo del proyecto.
-
-## Información adicional
-
-Si hay algún detalle adicional sobre el proyecto que creas que sería relevante para los usuarios o contribuyentes, no dudes en incluirlo aquí.
+### Felipe Vargas
