@@ -50,9 +50,9 @@ DB_PASSWORD="6232"
 DB_HOST="localhost"
 DB_PORT="5432"
 DEBUG="True"
-ALLOWED_HOSTS=[*,]
+ALLOWED_HOSTS=[*]
 ```
-Es recomendable ponerlo al lado de el archivo settings.py
+Es recomendable ponerlo al lado del archivo settings.py
 
 ## Autor
 ### Felipe Vargas
